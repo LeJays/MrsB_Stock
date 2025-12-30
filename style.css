@@ -1,0 +1,174 @@
+:root {
+    --gold: #D4AF37;
+    --dark-main: #121212;
+    --dark-card: #1E1E1E;
+    --grey-text: #A0A0A0;
+    --white: #FFFFFF;
+}
+
+body {
+    background-color: #2C2C2C; /* Gris foncé de l'image */
+    color: var(--white);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
+
+/* Header & Nav */
+.main-header {
+    background-color: var(--dark-main);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 40px;
+    border-bottom: 2px solid var(--gold);
+}
+
+.brand-logo { width: 120px; }
+.slogan { font-size: 8px; color: var(--gold); letter-spacing: 2px; }
+
+.top-nav .nav-item {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+
+.nav-item.active {
+    border-bottom: 2px solid var(--gold);
+    color: var(--gold);
+}
+
+/* Cartes Stats */
+.dashboard-container { padding: 30px; }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: var(--dark-card);
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.stat-card.highlight { border: 1px solid var(--gold); }
+
+.card-label { color: var(--grey-text); font-size: 14px; }
+.card-value { font-size: 28px; font-weight: 700; margin: 10px 0; }
+.card-sub { color: var(--gold); font-size: 12px; }
+
+/* Tableaux */
+.tables-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.table-box {
+    background: var(--dark-card);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.box-header h3 { color: var(--gold); margin-bottom: 15px; font-size: 18px; }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; color: var(--grey-text); font-size: 12px; padding: 10px; border-bottom: 1px solid #333; }
+td { padding: 10px; font-size: 13px; border-bottom: 1px solid #222; }
+
+/* Bouton Or */
+.btn-gold {
+    background: var(--gold);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Ajout au style.css existant */
+.input-gold {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    background: #222;
+    border: 1px solid #444;
+    border-radius: 5px;
+    color: white;
+}
+
+.input-gold:focus {
+    border-color: var(--gold);
+    outline: none;
+}
+
+.form-box {
+    background: var(--dark-card);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    max-width: 500px;
+    border: 1px solid #333;
+}
+
+.full-width {
+    width: 100% !important;
+}
+
+.btn-gold-outline {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.gold-badge {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--gold);
+    padding: 3px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    border: 1px solid var(--gold);
+}
+
+/* Correction pour index.html et signup.html */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background: var(--dark-card);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #333;
+}
+
+.logo-img { width: 150px; margin-bottom: 20px; }
+
+form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background: #222;
+    border: 1px solid #444;
+    color: white;
+    border-radius: 5px;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background: var(--gold);
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}

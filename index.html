@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>MRSB Stock - Connexion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <img src="IMG_1959.jpg" alt="Mrs. B Logo" class="logo-img">
+        <h2 class="gold-text">AUTHENTIFICATION</h2>
+        
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email Professionnel" required>
+            <input type="password" id="password" placeholder="Mot de passe" required>
+            <button type="submit">SE CONNECTER</button>
+        </form>
+        <p style="margin-top:15px">Nouveau ? <a href="signup.html" class="gold-text">Créer un compte</a></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCh2oxRNlaLUzfWNgyRpQg5fzBSbYEowdA",
+            authDomain: "mrsbstock.firebaseapp.com",
+            projectId: "mrsbstock",
+            storageBucket: "mrsbstock.firebasestorage.app",
+            messagingSenderId: "572591163450",
+            appId: "1:572591163450:web:00c5ec1bedef87679b4d03"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Récupérer le rôle de l'utilisateur
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                if (userDoc.exists()) {
+                    const role = userDoc.data().role;
+                    if (role === "admin") {
+                        window.location.href = "admin_dashboard.html";
+                    } else {
+                        window.location.href = "caisse_dashboard.html";
+                    }
+                }
+            } catch (error) {
+                alert("Erreur de connexion : " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>

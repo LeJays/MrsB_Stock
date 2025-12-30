@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription - MRSB Stock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <img src="IMG_1959.jpg" alt="Mrs. B Logo" class="logo-img">
+        <h2 class="gold-text">CRÉER UN COMPTE</h2>
+        
+        <form id="signupForm">
+            <input type="text" id="username" placeholder="Nom complet" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Mot de passe (6+ caractères)" required>
+            
+            <label style="display:block; margin-top:10px; color: #D4AF37;">Attribuer un rôle :</label>
+            <select id="role" style="width: 96%; padding: 12px; margin: 10px 0; background: #333; border: 1px solid #444; color: white; border-radius: 5px;">
+                <option value="caisse">Caisse (Vendeur)</option>
+                <option value="admin">Administrateur</option>
+            </select>
+
+            <button type="submit">S'INSCRIRE</button>
+        </form>
+        <p style="margin-top:15px">Déjà un compte ? <a href="index.html" class="gold-text">Se connecter</a></p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Ta configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCh2oxRNlaLUzfWNgyRpQg5fzBSbYEowdA",
+            authDomain: "mrsbstock.firebaseapp.com",
+            projectId: "mrsbstock",
+            storageBucket: "mrsbstock.firebasestorage.app",
+            messagingSenderId: "572591163450",
+            appId: "1:572591163450:web:00c5ec1bedef87679b4d03"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const nom = document.getElementById('username').value;
+            const role = document.getElementById('role').value;
+
+            try {
+                // 1. Création du compte dans Firebase Authentication
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // 2. Enregistrement des détails et du rôle dans Firestore
+                await setDoc(doc(db, "users", user.uid), {
+                    nom: nom,
+                    email: email,
+                    role: role,
+                    createdAt: new Date()
+                });
+
+                alert("Compte créé avec succès !");
+                window.location.href = "index.html"; // Redirection vers connexion
+
+            } catch (error) {
+                alert("Erreur lors de l'inscription : " + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
