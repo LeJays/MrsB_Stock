@@ -353,7 +353,7 @@ window.imprimerRecu = function(id) {
             <div class="ticket">
                 <img src="IMG_1959.jpg" style="width:80px; margin-bottom:10px;">
                 <p class="brand">MRS.B BEAUTY</p>
-                <p class="slogan">SOYEZ VOTRE STANDARD DE BEAUTÉ</p>
+                <p class="slogan">SOYEZ VOTRE STANDARD DE BEAUTÉ!</p>
                 <div class="hr"></div>
                 
                 <div class="details">
@@ -378,3 +378,4 @@ document.getElementById('logoutBtn')?.addEventListener('click', () => {
     signOut(auth).then(() => window.location.href = "index.html");
 
 });
+
