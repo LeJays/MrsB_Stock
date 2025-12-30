@@ -366,7 +366,7 @@ window.imprimerRecu = function(id) {
                 <div class="total">TOTAL : ${td[5].innerText} FCFA</div>
                 
                 <div class="hr"></div>
-                <p class="footer">Merci de votre confiance !<br>Les articles vendus ne sont ni repris ni échangés.</p>
+                <p class="footer">Merci pour votre confiance !<br>Les articles vendus ne sont ni repris ni échangés.</p>
             </div>
         </body>
         </html>
@@ -376,4 +376,5 @@ window.imprimerRecu = function(id) {
 
 document.getElementById('logoutBtn')?.addEventListener('click', () => {
     signOut(auth).then(() => window.location.href = "index.html");
+
 });
